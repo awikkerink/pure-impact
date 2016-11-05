@@ -32,7 +32,7 @@ function querydb(query, config, cbvalues) {
   });
 }
 
-apiRoutes.use('/Church',function (req, res, next) {
+apiRoutes.use('/church',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
   var query = "SELECT * FROM Church"
   querydb(query, config.church, function(cbvalues) {

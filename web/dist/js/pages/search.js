@@ -4,7 +4,7 @@ $(function () {
   $('#heading').text("Search");
   apiGetRequest('/api/search/text' + document.location.search , function (res) {
 
-    var table = document.getElementById("clientSearchResult");
+    var table = document.getElementById("churchSearchResult");
     var tb = document.createElement('tbody');
     for (var i = 0; i < res.length; i++) {
       var tr = tb.appendChild (document.createElement('tr'));

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>D2L | Expanse</title>
+  <title>Pure Impact</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -15,7 +15,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
+  folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
   <!-- iCheck -->
@@ -37,7 +37,7 @@
   <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+  <div class="wrapper">
 
 
     <header class="main-header" id ="header">
@@ -46,58 +46,59 @@
     <aside class="main-sidebar" id="sidebar">
     </aside>
 
-  <!-- =============================================== -->
+    <!-- =============================================== -->
 
-  <div class="content-wrapper">
-    <section class="content-header">
-      <h1>
-        Search by Client
-        <small>or Instance or Org</small>
-      </h1>
-      <form action="/search.html" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" id="searchValue" name="client" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-    </section>
-    <section class="content">
-      <div class="box">
-        <div class="box-body no-padding">
-          <table class="table table-striped" id ="clientSearchResult">
-            <tr style="background-color: #ffffff">
-              <th style="width: 20%"><font size= 3>Instance</th>
-              <th style="width: 40%"><font size= 3>Orgs</th>
-              <th style="width: 10%"><font size= 3>Datacenter</th>
-              <th style="width: 40%"><font size= 3>Client Name</th>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </section>
-  </div>
+    <div class="content-wrapper">
+      <section class="content-header">
+        <h1>
+          Search by Church Name
+          <small>or Denomination or City or Province</small>
+        </h1>
+        <form action="/search.html" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" id="searchValue" name="client" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </form>
+      </section>
+      <section class="content">
+        <div class="box">
+          <div class="box-body no-padding">
+            <table class="table table-striped" id ="churchSearchResult">
+              <tr style="background-color: #ffffff">
+                <th style="width: 40%"><font size= 3>Name</th>
+                  <th style="width: 40%"><font size= 3>Denomination</th>
+                    <th style="width: 10%"><font size= 3>City</th>
+                      <th style="width: 10%"><font size= 3>Province</th>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <footer class="main-footer" id ="footer">
+          </footer>
 
-  <footer class="main-footer" id ="footer">
-  </footer>
 
 
-<!-- jQuery 2.2.3 -->
-<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../../plugins/fastclick/fastclick.js"></script>
+          <!-- jQuery 2.2.3 -->
+          <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+          <!-- Bootstrap 3.3.6 -->
+          <script src="../../bootstrap/js/bootstrap.min.js"></script>
+          <!-- SlimScroll -->
+          <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+          <!-- FastClick -->
+          <script src="../../plugins/fastclick/fastclick.js"></script>
 
-<script src="/dist/js/pages/auth.js"></script>
-<script src="/dist/js/pages/navbars.js"></script> <!--Header, Sidebar, Footer-->
-<script src="/dist/js/pages/search.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/app.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-</body>
-</html>
+          <script src="/dist/js/pages/auth.js"></script>
+          <script src="/dist/js/pages/navbars.js"></script> <!--Header, Sidebar, Footer-->
+          <script src="/dist/js/pages/search.js"></script>
+          <!-- AdminLTE App -->
+          <script src="../../dist/js/app.min.js"></script>
+          <!-- AdminLTE for demo purposes -->
+        </body>
+        </html>

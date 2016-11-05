@@ -38,28 +38,28 @@ $(function() {
     <ul class="sidebar-menu"> \
       <li class="header">MAIN NAVIGATION</li> \
       <li> \
-        <a href="/index.html"> \
-          <i class="fa fa-home"></i> <span>Attendance</span> \
+        <a href="/pages/attendance.html"> \
+          <i class="fa fa-bar-chart"></i> <span>Attendance</span> \
         </a> \
       </li> \
       <li> \
-        <a href="/pages/hallOfFame.html"> \
-          <i class="fa fa-dashboard"></i> <span>Giving</span> \
+        <a href="/pages/giving.html"> \
+          <i class="fa fa-dollar"></i> <span>Giving</span> \
         </a> \
       </li> \
       <li> \
-        <a href="/pages/calculator.html"> \
-          <i class="fa fa-calculator"></i> <span>Demographic</span> \
+        <a href="/pages/demographic.html"> \
+          <i class="fa fa-user"></i> <span>Demographic</span> \
         </a> \
       </li> \
       <li> \
-        <a href="/pages/calculator.html"> \
-          <i class="fa fa-calculator"></i> <span>Events</span> \
+        <a href="/pages/events.html"> \
+          <i class="fa fa-asterisk"></i> <span>Events</span> \
         </a> \
       </li> \
       <li> \
-        <a href="/pages/calculator.html"> \
-          <i class="fa fa-calculator"></i> <span>Needs</span> \
+        <a href="/pages/needs.html"> \
+          <i class="fa fa-hand-paper-o"></i> <span>Needs</span> \
         </a> \
       </li>';
 
