@@ -1,0 +1,15 @@
+*.DS_Store
+*.log
+*.zip
+.idea
+.sass-cache/
+/nbproject/
+/nbproject/private/
+/node_modules/
+/iisnode/
+TODO
+test.html
+web.config
+config.*
+/web/pages/instance/downloads/
+.version
