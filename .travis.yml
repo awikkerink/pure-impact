@@ -12,3 +12,4 @@ deploy:
   bucket_name: elasticbeanstalk-us-east-1-740348107206
   on:
     repo: awikkerink/pure-impact
+    branch: release
