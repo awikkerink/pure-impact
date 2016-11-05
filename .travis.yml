@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- stable
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAJHV4PSW3THNA4T2A
+  secret_access_key:
+    secure: XOCjOYvoZl5pGyllWNGgfWIJ4gqRXev/TrbjoAkyAVAz0rbwooPfJSv8jzBLJKbqCvP/aZAcRasWwAmg4rWDn/HCLDCYqy1snUQSqDWf7NxxzlKQrFPpG2fu7VKKvQI8Yd6LBHWGGmnBADkRJwpKX5siK5c4dHgpWFIdZ5QaJ/d8vid1kq+iyB/zILGGTm5RrhUDomon3V0HUjNA2vXL6eQ2unfcaudi5mm9VLDgf6qw3eWn8uRzL1u66g9eEmaXcJcoIw7X2286ZwbgvKc3yYqHZ/qxwiYHKomcRL4msCaV+Q+tp3VHYHVrotHIgOdRpy4TyWZqPcSZCayi6zitaAlHl8rP8tmUxGEvG9G/gdh/HppZmu54WS7J/Ht5pRQ4t/kTNh4v597rLt8/MzQnyclv2bypzpZEhsO+y06OR2CoZekgFN8xh7Pd6h4u2b2xCvEb5r178bqCZeT6V2v8QRWjazabTKfRzrvHjuttvBDgcUTNz4epkGOuKxH20UJKsBSaXQgm0GZ1mH7mfCldqEBXI6syYxKF09RTeqHzCZd4zDeuLkGn+WFIKZNbLB/kv86aQG3pY5sjosd8aPmfas/qpQ0e081jOOBaHsw9v/egUuaX7iUeWN4rc6zzNi6FYmR7o12pjEBhBigbV7ik6cqNMvvMPl0E4OpJMmrAQpY=
+  region: us-east-1
+  app: Canadian Church Map
+  env: Sample-env
+  on:
+    repo: awikkerink/pure-impact
