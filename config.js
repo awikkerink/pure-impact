@@ -1,5 +1,5 @@
 var config = module.exports = {
-	port : 80,
+	port : process.env.PORT || 80,
 	church : {
 
 		user: process.env.DB_USER,
