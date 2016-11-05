@@ -9,5 +9,6 @@ deploy:
   region: us-east-1
   app: Canadian Church Map
   env: Sample-env
+  bucket_name: elasticbeanstalk-us-east-1-740348107206
   on:
     repo: awikkerink/pure-impact
