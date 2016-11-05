@@ -4,7 +4,7 @@
   "main": "dist/js/app.min.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/almasaeed2010/AdminLTE.git"
+    "url": "git://github.com/awikkerink/pure-impact"
   },
   "license": "MIT",
   "devDependencies": {
@@ -24,19 +24,10 @@
   },
   "dependencies": {
     "activedirectory": "^0.7.2",
-    "body-parser": "^1.15.2",
-    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
-    "helmet": "^2.2.0",
-    "jsonwebtoken": "^7.1.9",
     "mssql": "^3.3.0",
-    "passport": "^0.3.2",
-    "passport-saml": "^0.15.0",
     "path": "^0.12.7",
     "pg": "^6.1.0",
-    "phantom": "^2.1.21",
-    "phantomjs": "^2.1.7",
-    "phantomjs-prebuilt": "^2.1.13",
     "querystring": "^0.2.0",
     "url": "^0.11.0"
   },

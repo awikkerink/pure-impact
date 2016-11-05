@@ -50,7 +50,7 @@ apiRoutes.use('/churchProvince',function (req, res, next) {
 
 apiRoutes.use('/churchCity',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
-  var query = "SELECT COUNT(*) as count FROM Church where City = 'WATERLOO'"
+  var query = "SELECT COUNT(*) as count FROM Church where City = 'OTTAWA'"
   querydb(query, config.church, function(cbvalues) {
     res.status(200).json(cbvalues);
   });
@@ -58,7 +58,7 @@ apiRoutes.use('/churchCity',function (req, res, next) {
 
 apiRoutes.use('/churchType',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
-  var query = "SELECT COUNT(*) as count FROM Church where City = 'WATERLOO'"
+  var query = "SELECT COUNT(*) as count FROM Church where City = 'OTTAWA'"
   querydb(query, config.church, function(cbvalues) {
     res.status(200).json(cbvalues);
   });
