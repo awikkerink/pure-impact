@@ -1,169 +1,502 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Pure Impact</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/chartLegend.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-  <!-- Morris charts -->
-  <link rel="stylesheet" href="/plugins/morris/morris.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-  folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="/dist/css/skins/skin-blue.min.css">
-  <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+<title>Pure Impact</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-  <div class="wrapper">
 
-    <header class="main-header" id ="header">
-    </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar" id="sidebar">
-    </aside>
-
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>
-          Pure Impact
-          <small>Geography Data</small>
-        </h1>
-      </section>
-
-      <!-- Main content -->
-      <section class="content">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-xs-3">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner" >
-                <p><b># Of Churches in your Province</b></p>
-                <h3 id="numChurchProvince">_</h3>
-              </div>
-              <div class="icon">
-                <i class="ion ion-briefcase"></i>
-              </div>
-              <a href="/search.html" class="small-box-footer">Find a church in your province<i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-xs-3">
-            <!-- small box -->
-            <div class="small-box bg-green">
-              <div class="inner">
-                <p><b># Of Churches in your City</b></p>
-                <h3 id="numChurchCity">_</h3>
-              </div>
-              <div class="icon">
-                <i class="ion ion-cube"></i>
-              </div>
-              <a href="/search.html" class="small-box-footer">Find a church in your city<i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-xs-3">
-            <!-- small box -->
-            <div class="small-box bg-orange">
-              <div class="inner">
-                <p><b>Most Common Church Type</b></p>
-                <h3 id="numChurchLeast">_</h3>
-              </div>
-              <div class="icon">
-                <i class="ion ion-cube"></i>
-              </div>
-              <a href="/rawData.html" class="small-box-footer">See More Data<i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-xs-3">
-            <!-- small box -->
-            <div class="small-box bg-blue">
-              <div class="inner">
-                <p><b>Least Common Church Type</b></p>
-                <h3 id="numChurchMost">_</h3>
-              </div>
-              <div class="icon">
-                <i class="ion ion-cube"></i>
-              </div>
-              <a href="/rawData.html" class="small-box-footer">See More Data<i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
+<body>
+<nav id="mainNav" class="navbar navbar-default navbar-full">
+    <div class="container container-nav">
+        <div class="navbar-header">
+            <button aria-expanded="false" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="index.html">
+                <img class="logo" src="./images/logo-white.png" height="30">
+            </a>
         </div>
-        <div class="row">
-          <div class="col-lg-12 col-xs-12">
-            <div class="box box-success">
-              <div class="box-header with-border">
-                <h3 class="box-title">Churches in Your Area</h3>
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-              </div>
-              <div class="pad">
-                <div id="world-map-markers" style="height: 418px;"></div>
-              </div>
-            </div>
-          </div>
+        <div style="height: 1px;" aria-expanded="false" class="navbar-collapse collapse" id="bs">
+             <ul class="nav navbar-nav navbar-right">
+                <li><a href="#info">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <!-- <li><a href="#footer">Contact</a></li> -->
+                <li><a class="chat-button" href="#footer">Contact</a></li>
+            </ul>
         </div>
-      </section>
-
     </div>
-  </div>
-  <footer class="main-footer" id ="footer">
-  </footer>
+</nav>
+<div id="top-content" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center rocket-animation-holder">
+                <div class="rocket-animation">
+                    <!-- <div class="rocket">
+                        <img src="images/rocket.png" width="136" height="190">
+                        <span class="rocket-line rline1"></span>
+                        <span class="rocket-line rline2"></span>
+                        <span class="rocket-line rline3"></span>
+                    </div> -->
+                    <div class="cloud cloud1"><img src="images/cloud.png" width="60" height="35"></div>
+                    <div class="cloud cloud2"><img src="images/cloud.png" width="60" height="35"></div>
+                    <div class="cloud cloud3"><img src="images/cloud.png" width="60" height="35"></div>
+                </div>
 
-  <!-- jQuery 2.2.3 -->
-  <script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <!-- Bootstrap 3.3.6 -->
-  <script src="/bootstrap/js/bootstrap.min.js"></script>
-  <!-- Morris.js charts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-  <script src="/plugins/morris/morris.min.js"></script>
-  <!-- Sparkline -->
-  <script src="/plugins/sparkline/jquery.sparkline.min.js"></script>
-  <!-- jvectormap -->
-  <script src="/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-  <script src="/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="/plugins/knob/jquery.knob.js"></script>
-  <!-- daterangepicker -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-  <script src="/plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- datepicker -->
-  <script src="/plugins/datepicker/bootstrap-datepicker.js"></script>
-  <!-- Bootstrap WYSIHTML5 -->
-  <script src="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-  <!-- Slimscroll -->
-  <script src="/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-  <!-- FastClick -->
-  <script src="/plugins/fastclick/fastclick.js"></script>
-  <!-- AdminLTE App -->
-  <script src="/dist/js/app.min.js"></script>
+                <h1>Pure... and simple.</h1>
+                <h2>Better Data, Better Decisions, Bigger Impact</h2>
+                <br>
+                <h4>Pure Impact is a cloud platform powering the modern church with networking, data analysis, and resource optimization. We call these Unity, Wisdom, and Stewardship. The net effect? A bigger impact footprint.</h4>
 
-  <script src="/dist/js/pages/navbars.js"></script>
-  <script src="/dist/js/pages/chartDataInsertDaily.js"></script>
-  <script src="/dist/js/pages/chartDataInsertMonthly.js"></script>
-  <script src="/dist/js/pages/chartDataInsertPie.js"></script>
-  <script src="/dist/js/pages/index.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+                <div class="domain-form-holder">
+                    <form id="domain-form">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <!-- <div class="col-xs-12 col-md-9 domain-text-holder">
+                                    <input id="domain-text" class="domain-text" type="text" name="domain" />
+                                    <i class="hroc hroc-search-icon"></i>
+                                </div> -->
+                                <div class="col-xs-12 col-md-12 btn-go-holder">
+                                    <button style="padding: 0; border-radius: 10px; border: 0;"><a class="btn-go" type="button" href="#info">Learn More</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="info" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 row-title">
+                <h4>Heralding a Heavenly Kingdom of Data!</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div id="info-box1" class="info-box opened-info">
+                    <div class="info-icon"><i class="fa fa-users"></i></div>
+                    <div class="info-title">Unity</div>
+                    <div class="info-circle"><div class="circle-icon"></div></div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div id="info-box2" class="info-box">
+                    <div class="info-icon"><i class="hroc hroc-technology"></i></div>
+                    <div class="info-title">Wisdom</div>
+                    <div class="info-circle"><div class="circle-icon"></div></div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div id="info-box3" class="info-box">
+                    <div class="info-icon"><i class="fa fa-heart"></i></div>
+                    <div class="info-title">Stewardship</div>
+                    <div class="info-circle"><div class="circle-icon"></div></div>
+                </div>
+            </div>
+            <!-- <div class="col-xs-12 col-md-3">
+                <div id="info-box4" class="info-box">
+                    <div class="info-icon"><i class="hroc hroc-search"></i></div>
+                    <div class="info-title"></div>
+                    <div class="info-circle"><div class="circle-icon"></div></div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<div id="info-text1" class="container-fluid info-text-holder">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="info-title-icon">
+                    <i class="hroc hroc-business"></i>
+                    <div>Unity</div>
+                </div>
+                <div class="info-text">
+                    By unifying pastors, christian leaders and nonprofits in the K/W area, we will be uniquely positioned to make accessible currently non-public data. Pure Impact will also be building a suite of church apps that collect usage data, and contribute to a bigger, more complete picture the church in Kitchener / Waterloo.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="info-text2" class="container-fluid info-text-holder info-closed">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="info-title-icon">
+                    <i class="hroc hroc-transport"></i>
+                    <div>Wisdom</div>
+                </div>
+                <div class="info-text">
+                    With rich data in hand, Pure Impact will offer pastors and christian leaders vital analytics both at the church and regional, provincial, and national levels. This kind of visibility into key metrics surrounding the church today, empowers pastors to make targeted, data-driven decisions about their programs, sermons, venues, and further initiatives.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="info-text3" class="container-fluid info-text-holder info-closed">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="info-title-icon">
+                    <i class="hroc hroc-technology"></i>
+                    <div>Stewardship</div>
+                </div>
+                <div class="info-text">
+                    We are called to be the stewards of the resource God gave us. In addition to apps and analytics, Pure Impact will be a go-to shared resource exchange for churches to better offer what they have, and more quickly access what they don’t. Optimized resource allocation is our way of encouraging stewardship in the modern church. et quas molestias excepturi sint occaecati cupiditate at vero eos et accusamus et iusto odio dignissimos ducimus qui.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- <div id="info-text4" class="container-fluid info-text-holder info-closed">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="info-title-icon">
+                    <i class="hroc hroc-search"></i>
+                    <div>Discover Pure Impact</div>
+                </div>
+                <div class="info-text">
+                Praesentium voluptatum deleniti atque corrupti quos dolores
+et quas molestias excepturi sint occaecati at vero eos et accusamus et iusto odio dignissimos ducimus qui
+blanditiis cupiditate.
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div id="features" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 row-title">
+                <h4>Amazing Visibility</h4>
+                <h5>Our impact is deep and wide - just like God's love</h5>
+                <!-- <h5>At the tip of your fingers.</h5> -->
+            </div>
+        </div>
+        <div class="row feature-row rtl-row">
+            <div class="col-sm-12 col-md-5 text-center">
+                <img class="feature-image" src="./images/Feature-1.png">
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <!-- <div class="feature-title">The Bigger Picture</div> -->
+                <div class="feature-title">Micro View - Deep Impact</div>
+                <!-- <div class="feature-subtitle">What is happening at a church-level</div> -->
+                <div class="feature-subtitle">A real-time view of the pulse of your church.</div>
+                <div class="feature-text">
+                    <p>When you use our apps, you get more than cutting edge technology. You get insights into the inner workings of your church, in the areas that matter most. Attendance, giving, children & youth, demographics, events, small groups, programs and more come under a whole new light in Pure Impact dashboards. This level of visibility enables you to identify and respond to your church’s needs with greater precision and timeliness.</p>
+                </div>
+                <a class="feature-button" href="#">Preview</a>
+            </div>
+        </div>
+        <div class="row feature-row">
+            <div class="col-sm-12 col-md-5 text-center">
+                <img class="feature-image" src="./images/Feature-2.png">
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <div class="feature-title">Macro View - Wide Impact</div>
+                <div class="feature-subtitle">What is happening at the Church-level</div>
+                <div class="feature-text">
+                    <p>Pure Impact has a simple mission to increase the impact footprint of today’s churches, powering the advancement of God’s kingdom with cloud technology. Our platform redefines what “Big Data” looks like in today’s church, making available population, income, demographic, religious, affiliation, marital, and education data at the regional, provincial, and national levels. Our mapping and geo-location technologies allows churches to make sense of this data in ways previously never thought possible.
+                    </p>
+                </div>
+                <a class="feature-button" href="./macro.html">Preview</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="starting" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-sx-12 col-md-9">
+                <h4>Read our Pitch Deck for free!</h4>
+            </div>
+            <!-- <div class="col-sx-12 col-md-3">
+                <div class="price-holder">
+                    <div class="currency">$</div>
+                    <div class="number">
+                        <div class="num-big">3</div>
+                        <div class="num-small-holder">
+                            <div class="plan-info">Starting From</div>
+                            <div class="num-small">.38<div class="duration">/mo</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-sx-12 col-md-3">
+                <a class="plan-button" href="#">Download PDF</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div id="pricing" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 row-title">
+                <h4>Pricing the Priceless</h4>
+                <h5>Best prices ever for Search and Register your Domain name!</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="plan-box">
+                    <div class="plan-box-header color-bg1">
+                        <div class="plan-title">Starter</div>
+                        <div class="price-holder">
+                            <div class="currency">$</div>
+                            <div class="number">
+                                <div class="num-big">3</div>
+                                <div class="num-small-holder">
+                                    <div class="num-small">.38<div class="duration">/mo</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan-box-content">
+                        <ul class="c-list">
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Unlimited Storage</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>500 Protected Files</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>All Sharing Features</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Realtime Revoke</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Access to Party Integrations</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Free Native Apps</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>QNote Editor</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Offline File Access</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Basic Versioning</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Single Sign on</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>2-Factor Autentication</li>
+                        </ul>
+                    </div>
+                    <div class="plan-box-button">
+                        <a class="color-bg1" href="#">Select plan</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="plan-box best-seller">
+                    <div class="plan-box-header color-bg2">
+                        <div class="plan-title">Advanced</div>
+                        <div class="price-holder">
+                            <div class="currency">$</div>
+                            <div class="number">
+                                <div class="num-big">5</div>
+                                <div class="num-small-holder">
+                                    <div class="num-small">.38<div class="duration">/mo</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan-box-content">
+                        <ul class="c-list">
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Unlimited Storage</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>500 Protected Files</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>All Sharing Features</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Realtime Revoke</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Access to Party Integrations</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Free Native Apps</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>QNote Editor</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Offline File Access</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Basic Versioning</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Single Sign on</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>2-Factor Autentication</li>
+                        </ul>
+                    </div>
+                    <div class="plan-box-button">
+                        <a class="color-bg2" href="#">Select plan</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="plan-box">
+                    <div class="plan-box-header color-bg3">
+                        <div class="plan-title">Ultra</div>
+                        <div class="price-holder">
+                            <div class="currency">$</div>
+                            <div class="number">
+                                <div class="num-big">8</div>
+                                <div class="num-small-holder">
+                                    <div class="num-small">.38<div class="duration">/mo</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan-box-content">
+                        <ul class="c-list">
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Unlimited Storage</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>500 Protected Files</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>All Sharing Features</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Realtime Revoke</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Access to Party Integrations</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Free Native Apps</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>QNote Editor</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Offline File Access</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Basic Versioning</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>Single Sign on</li>
+                            <li class="c-item not-inc"><i class="fa fa-check" aria-hidden="true"></i>2-Factor Autentication</li>
+                        </ul>
+                    </div>
+                    <div class="plan-box-button">
+                        <a class="color-bg3" href="#">Select plan</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="plan-box">
+                    <div class="plan-box-header color-bg4">
+                        <div class="plan-title">Pro</div>
+                        <div class="price-holder">
+                            <div class="currency">$</div>
+                            <div class="number">
+                                <div class="num-big">13</div>
+                                <div class="num-small-holder">
+                                    <div class="num-small">.38<div class="duration">/mo</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan-box-content">
+                        <ul class="c-list">
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Unlimited Storage</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>500 Protected Files</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>All Sharing Features</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Realtime Revoke</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Access to Party Integrations</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Free Native Apps</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>QNote Editor</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Offline File Access</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Basic Versioning</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>Single Sign on</li>
+                            <li class="c-item"><i class="fa fa-check" aria-hidden="true"></i>2-Factor Autentication</li>
+                        </ul>
+                    </div>
+                    <div class="plan-box-button">
+                        <a class="color-bg4" href="#">Select plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div id="reasons" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 row-title">
+                <h4>More reasons why you’ll love Pure Impact</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="reason-box">
+                    <h5>Love</h5>
+                    <p>Our support staff is available 24/7/365 to assist you via Telephone, LiveChat, or Email with any hosting-related issues</p>
+                </div>
+                <div class="reason-box">
+                    <h5>Peace</h5>
+                    <p>Try our services at no risk! If you're not completely satisfied you can cancel within 45 days for a complete refund.</p>
+                </div>
+                <div class="reason-box">
+                    <h5>Understanding</h5>
+                    <p>The availability of your website is our top priority. We stand by that fact with our uptime guarantee!</p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <iframe class="vimeo" src="https://player.vimeo.com/video/72978544" width="100%" height="310" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div id="testimonials" class="container-fluid">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <div class="testimonials-slider">
+                    <div class="testimonial-slide">
+                        <div class="slide-content">
+                            <div class="col-sm-12 col-md-3">
+                                <img src="./images/Testimonial-1.png" alt="">
+                            </div>
+                            <div class="col-sm-12 col-md-9">
+                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque quos dolores et quas molestias excepturi.<br>
+                                    praesentium voluptatum deleniti atque corrupti quos et quas molestias excepturi.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="slide-content">
+                            <div class="col-sm-12 col-md-3">
+                                <img src="./images/Testimonial-2.png" alt="">
+                            </div>
+                            <div class="col-sm-12 col-md-9">
+                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque quos dolores et quas molestias excepturi.<br>
+                                    praesentium voluptatum deleniti atque corrupti quos et quas molestias excepturi.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="slide-content">
+                            <div class="col-sm-12 col-md-3">
+                                <img src="./images/Testimonial-3.png" alt="">
+                            </div>
+                            <div class="col-sm-12 col-md-9">
+                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque quos dolores et quas molestias excepturi.<br>
+                                    praesentium voluptatum deleniti atque corrupti quos et quas molestias excepturi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 row-title">
+                <h4>Get in touch</h4>
+                <h5>You’re a step further to make the best desicion</h5>
+            </div>
+        </div>
+        <div class="row main-footer-content">
+            <p>Pure Impact network covers +250 countries and devices ranging from<br>
+                desktops and laptops to smart phones and tablets.</p>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="contact-box">
+                    <i class="hroc hroc-whatsapp"></i> +(038) 38 638036
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="contact-box">
+                    <i class="hroc hroc-envelope"></i> hello@Pure Impact.com
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="contact-box">
+                    <i class="hroc hroc-instagram"></i> @Pure Impact
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/createjs.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
