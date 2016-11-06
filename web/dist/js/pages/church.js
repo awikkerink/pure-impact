@@ -8,7 +8,7 @@
 $(function () {
   "use strict";
 
-  $('#heading').text("Joyful Abundance Community Church"); //Take most recent value
+  $('#heading').text("Joyfully Abundant Community Church"); //Take most recent value
 
   var graphCount = 0;
   var graphTotal = 1;
@@ -39,7 +39,7 @@ $(function () {
   });
 
   $.get('/api/religionBreakdown', function (res) {
-    $('#givingLastWeek').text(numberWithCommas(res[0].value));
-    $('#givingAverage').text(numberWithCommas(res[res.length -2].value));
+    $('#givingLastWeek').text("$" + numberWithCommas(res[0].value) + ".45");
+    $('#givingAverage').text("$" + numberWithCommas(res[res.length -2].value) + ".22");
   });
 });
