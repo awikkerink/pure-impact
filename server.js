@@ -103,7 +103,7 @@ apiRoutes.use('/religionBreakdown',function (req, res, next) {
 
 apiRoutes.use('/universityByRegion',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
-  var query = 'SELECT "Region", COUNT(*) as value FROM p2cdata \
+  var query = 'SELECT "Region" as province, COUNT(*) as value FROM p2cdata \
                 GROUP by "Region"'
   querydb(query, config.church, function(cbvalues) {
     res.status(200).json(cbvalues);
@@ -112,7 +112,7 @@ apiRoutes.use('/universityByRegion',function (req, res, next) {
 
 apiRoutes.use('/studentsByRegion',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
-  var query = 'SELECT "Region", SUM("Students") as valuee FROM p2cdata \
+  var query = 'SELECT "Region" as province, SUM("Students") as valuee FROM p2cdata \
                 GROUP by "Region"'
   querydb(query, config.church, function(cbvalues) {
     res.status(200).json(cbvalues);
@@ -121,7 +121,7 @@ apiRoutes.use('/studentsByRegion',function (req, res, next) {
 
 apiRoutes.use('/studentsByUniversity',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
-  var query = 'SELECT "University", SUM("Students") as value FROM p2cdata \
+  var query = 'SELECT "University" as university, SUM("Students") as value FROM p2cdata \
                 where "Students" > 0 \
                 GROUP by "University"'
   querydb(query, config.church, function(cbvalues) {
@@ -131,7 +131,7 @@ apiRoutes.use('/studentsByUniversity',function (req, res, next) {
 
 apiRoutes.use('/studentsByCity',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
-  var query = 'SELECT "Region", "City", "City" || \', \' || "Region" as location, SUM("Students") as value FROM p2cdata \
+  var query = 'SELECT "Region" as region, "City", "City" || \', \' || "Region" as location, SUM("Students") as value FROM p2cdata \
                 where "Students" > 0 \
                 GROUP by "Region", "City"'
   querydb(query, config.church, function(cbvalues) {
