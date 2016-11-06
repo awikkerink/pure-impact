@@ -8,11 +8,9 @@
 $(function () {
   "use strict";
   var City = getParameterByName("City")
-  // if (City == null){ City = geoplugin_city(); console.log(City)}
   if (City == null){ City = "WATERLOO" }
-  console.log(City)
   var Province = geoplugin_region()
-  if (Province == null){ Province = geoplugin_city(); console.log(Province)}
+  if (Province == null){ Province = geoplugin_city()}
 
   $('#heading').text("Where Are The Churches in " + City + "?"); //Take most recent value
 

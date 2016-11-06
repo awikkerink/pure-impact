@@ -8,7 +8,7 @@
 $(function () {
   "use strict";
 
-  $('#heading').text("Joyfully Abundant Community Church"); //Take most recent value
+  $('#heading').text(getParameterByName(name)); //Take most recent value
 
   var graphCount = 0;
   var graphTotal = 1;
