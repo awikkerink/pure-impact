@@ -168,6 +168,23 @@ apiRoutes.use('/religionDemographicBreakdown',function (req, res, next) {
   });
 });
 
+apiRoutes.get('/search', function(req, res) {
+	var searchTerm = req.query.text.toLowerCase();
+
+	// warning SQL injection can happen here
+	// also this will totally blow up if special characters are accepted
+	var query = 'SELECT legalname as name, city, province ' +
+		'FROM Church ' +
+		"WHERE LOWER( legalname ) like '%" + searchTerm + "%' " +
+		"OR LOWER( city ) like '%" + searchTerm + "%' " +
+		"OR LOWER( province ) like '%" + searchTerm + "%' ";
+
+	querydb( query, config.church, function( cbvalues ) {
+		res.status(200).json(cbvalues);
+	});
+
+});
+
 app.use(express.static('./web'));
 
 app.use('/api', apiRoutes);
