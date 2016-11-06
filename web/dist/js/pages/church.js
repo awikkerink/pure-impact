@@ -7,8 +7,10 @@
 
 $(function () {
   "use strict";
+  var Church = getParameterByName(name)
+  if (Church == null){ Church = geoplugin_city()}
+  $('#heading').text(Church); //Take most recent value
 
-  $('#heading').text(getParameterByName(name)); //Take most recent value
 
   var graphCount = 0;
   var graphTotal = 1;
