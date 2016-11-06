@@ -8,7 +8,7 @@
 $(function () {
   "use strict";
 
-  $('#heading').text("Where Are The Churches?"); //Take most recent value
+  $('#heading').text("Where Are The Demographics?"); //Take most recent value
 
   var graphCount = 0;
   var graphTotal = 0;
@@ -18,6 +18,9 @@ $(function () {
   //PopulateGraphMonthly(36, 30, 100, false, 1, '/api/stats/Availability?years=3', 'Location', 'Availability', 'AvailabilityLegend', 3, 'line', '', 'CB15', function(cb){ graphCount++ })
 
   //PopulatePieGraph('/api/stats/logins/lastXDays/bydc?days=30', 'pieChart', '', 3, 1, 'LocationName', 'Percentage', 'doughnut', 'CB15', '%')
+
+  PopulatePieGraph('/api/religionDenomationBreakdown', 'religionDenomationBreakdown', '', 0, 'denomination', 'value', 'pie', 'CB15', '')
+  PopulatePieGraph('/api/religionDemographicBreakdown', 'religionDemographicBreakdown', '', 0, 'gender', 'value', 'pie', 'CB15', '')
 
   var areGraphsDone = function(){
     if (graphCount == graphTotal){
@@ -30,20 +33,7 @@ $(function () {
     }
   }
 
-  setTimeout(areGraphsDone , 250)
-
-  $.get('/api/churchProvince' + document.location.search, function (res) {
-    console.log(res)
-    $('#numChurchProvince').text(numberWithCommas(res.count));
-  });
-  $.get('/api/churchCity' + document.location.search, function (res) {
-    console.log(res)
-    $('#numChurchCity').text(numberWithCommas(res.count));
-  });
-  $.get('/api/churchType' + document.location.search, function (res) {
-    $('#numChurchLeast').text(numberWithCommas(res[0].count));
-    $('#numChurchMost').text(numberWithCommas(res[res.length -1].count));
-  });
+  setTimeout(areGraphsDone , 250);
 
 
   //-----------------
