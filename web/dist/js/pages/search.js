@@ -25,7 +25,7 @@ $(function () {
       var city = tr.appendChild( document.createElement('td') );
       var province = tr.appendChild( document.createElement('td') );
 
-      name.innerHTML = church.name;
+      name.innerHTML = '<a href="/pages/church.html?name=' + church.name + '">' + church.name + '</a>';
       city.innerHTML = church.city;
       province.innerHTML = church.province;
     } );
