@@ -48,11 +48,6 @@ $(function() {
         </a> \
       </li> \
       <li> \
-        <a href="/pages/needs.html"> \
-          <i class="fa fa-hand-paper-o"></i> <span>Needs In Your City</span> \
-        </a> \
-      </li> \
-      <li> \
         <a href="/pages/churchCollab.html"> \
           <i class="fa fa-compress"></i> <span>Church Collab</span> \
         </a> \
