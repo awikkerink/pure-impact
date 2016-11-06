@@ -68,4 +68,6 @@ app.use(express.static('./web'));
 
 app.use('/api', apiRoutes);
 
-app.listen(config.port);
+app.listen(config.port, function(server) {
+  console.log('Listening');
+});
