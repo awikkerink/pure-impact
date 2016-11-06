@@ -169,13 +169,14 @@
     color: white;
     width: 80%;
     margin: 0 auto;
+    padding: 5% 0;
 }
 
 .domain-form-holder{
     display: inline-block;
     max-width: 500px;
     width: 25%;
-    margin: 15% 0;
+    margin: 10% 0;
 }
 
 .domain-form-holder div[class^="col-"]{
