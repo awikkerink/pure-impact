@@ -101,6 +101,34 @@ apiRoutes.use('/religionBreakdown',function (req, res, next) {
   });
 });
 
+apiRoutes.use('/universityByRegion',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = 'SELECT "Region", COUNT(*) as value FROM p2cdata \
+                GROUP by "Region"'
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
+apiRoutes.use('/studentsByRegion',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = 'SELECT "Region", SUM("Students") as valuee FROM p2cdata \
+                GROUP by "Region"'
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
+apiRoutes.use('/studentsByUniversity',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = 'SELECT "University", SUM("Students") as value FROM p2cdata \
+                where "Students" > 0 \
+                GROUP by "University"'
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
 app.use(express.static('./web'));
 
 app.use('/api', apiRoutes);
