@@ -8,7 +8,7 @@
 $(function () {
   "use strict";
   var Church = getParameterByName(name)
-  if (Church == null){ Church = geoplugin_city()}
+  if (Church == null){ Church = "Joyfully Abundant Community Church"}
   $('#heading').text(Church); //Take most recent value
 
 
@@ -32,11 +32,11 @@ $(function () {
 
   setTimeout(areGraphsDone , 250)
 
-  $.get('/api/churchAttendance?months=36' + document.location.search, function (res) {
+  $.get('/api/churchAttendance?months=36', function (res) {
     $('#attendanceLastWeek').text(numberWithCommas(res[res.length - 1].value));
   });
 
-  $.get('/api/churchAttendanceAverage?months=36' + document.location.search, function (res) {
+  $.get('/api/churchAttendanceAverage?months=36', function (res) {
     $('#attendanceAverage').text(parseFloat(numberWithCommas(res[0].value), 0));
   });
 
