@@ -912,8 +912,7 @@
 -------------------------------------------------------------------*/
 #footer{
     background-color: #ffffff;
-    padding-top: 70px;
-    padding-bottom: 90px;
+    padding: 10% 0 ;
     text-align: center;
 }
 
@@ -936,6 +935,10 @@
 
 #footer .main-footer-content{
     padding: 3% 10%;
+}
+
+#footer .main-footer-button{
+    padding: 0 0 3% 0;
 }
 
 #footer p{
