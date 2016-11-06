@@ -129,6 +129,14 @@ apiRoutes.use('/studentsByUniversity',function (req, res, next) {
   });
 });
 
+apiRoutes.use('/religionDemographicBreakdown',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = "SELECT denomination, SUM(total) as value FROM \"religionByArea\" WHERE religion = 'Christian' group by denomination"
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
 app.use(express.static('./web'));
 
 app.use('/api', apiRoutes);
