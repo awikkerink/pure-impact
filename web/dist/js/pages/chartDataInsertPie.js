@@ -41,13 +41,13 @@ function PieshowAll(legendName){
 }*/
 
 var GetPieGraphData = function(apiRoute, toFixed, split, value, type, palette, cbvalues) {
-  apiGetRequest(apiRoute, function (res) {
+  $.get(apiRoute, function (res) {
     var Data = new Array;
     var Labels = new Array;
 
     for (var i = 0; i < res.length; i++) {
       Labels.push(res[i][split]);
-      Data.push(res[i][value].toFixed(toFixed));
+      Data.push((+res[i][value]).toFixed(toFixed));
       if (Data.length == res.length){
         cbvalues(Data, Labels)
       }
@@ -55,7 +55,7 @@ var GetPieGraphData = function(apiRoute, toFixed, split, value, type, palette, c
   });
 }
 
-var PopulatePieGraph = function(apiRoute, chartId, legendId, toFixed, last, split, value, type, palette, unit){
+var PopulatePieGraph = function(apiRoute, chartId, legendId, toFixed, split, value, type, palette, unit){
   GetPieGraphData(apiRoute, toFixed, split, value, type, palette, function(cbData, cbLabels) {
 
     var pieOptions = {

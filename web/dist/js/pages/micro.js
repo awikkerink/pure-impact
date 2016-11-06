@@ -13,11 +13,11 @@ $(function () {
   var graphCount = 0;
   var graphTotal = 0;
 
-  //PopulateGraphDaily(365, 1, true, 2, '/api/stats/logins/total', 'Type', 'loginChart', 'loginChartLegend', 0, 'line', '', 'CB15', function(cb){ graphCount++ })
+  //PopulateGraphDaily(365, 1, true, 2, '/api/churchAttendance', '', 'churchAttendance', '', 0, 'line', '', 'CB15', function(cb){ graphCount++ })
   //PopulateGraphDaily(365, 1, true, 2, '/api/stats/logins/bydc?days=366', 'LocationName', 'COLOvsAWS', 'COLOvsAWSLegend', 0, 'line', '', 'CB15', function(cb){ graphCount++ })
-  //PopulateGraphMonthly(36, 30, 100, false, 1, '/api/stats/Availability?years=3', 'Location', 'Availability', 'AvailabilityLegend', 3, 'line', '', 'CB15', function(cb){ graphCount++ })
+  PopulateGraphMonthly(36, 30, 0, false, 2, '/api/churchAttendance?months=36', '', 'churchAttendance', '', 0, 'line', '', 'CB15', function(cb){ graphCount++ })
 
-  //PopulatePieGraph('/api/stats/logins/lastXDays/bydc?days=30', 'pieChart', '', 3, 1, 'LocationName', 'Percentage', 'doughnut', 'CB15', '%')
+  PopulatePieGraph('/api/religionBreakdown', 'religionBreakdown', '', 0, 'religion', 'value', 'pie', 'CB15', '')
 
   var areGraphsDone = function(){
     if (graphCount == graphTotal){
@@ -33,17 +33,15 @@ $(function () {
   setTimeout(areGraphsDone , 250)
 
   $.get('/api/churchProvince' + document.location.search, function (res) {
-    console.log(res)
-    $('#numChurchProvince').text(numberWithCommas(res.count));
+    $('#numChurchProvince').text(numberWithCommas(res[0].count));
   });
   $.get('/api/churchCity' + document.location.search, function (res) {
-    console.log(res)
-    $('#numChurchCity').text(numberWithCommas(res.count));
+    $('#numChurchCity').text(numberWithCommas(res[0].count));
   });
-  $.get('/api/churchType' + document.location.search, function (res) {
-    $('#numChurchLeast').text(numberWithCommas(res[0].count));
-    $('#numChurchMost').text(numberWithCommas(res[res.length -1].count));
-  });
+  // $.get('/api/churchType' + document.location.search, function (res) {
+  //   $('#numChurchLeast').text(numberWithCommas(res[0].count));
+  //   $('#numChurchMost').text(numberWithCommas(res[res.length -1].count));
+  // });
 
 
   //-----------------

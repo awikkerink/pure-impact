@@ -23,7 +23,7 @@ function querydb(query, config, cbvalues) {
     // execute a query on our database
     client.query(query, function (err, result) {
       if (err) throw err;
-      cbvalues(result.rows[0]);
+      cbvalues(result.rows);
 
       client.end(function (err) {
         if (err) throw err;
@@ -39,6 +39,24 @@ apiRoutes.use('/church',function (req, res, next) {
     res.status(200).json(cbvalues);
   });
 });
+
+apiRoutes.use('/dates',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = "SELECT * from dates where date > (select now()::timestamp - cast('" + queryData.days + " days' as interval)) AND days < now() order by date"
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
+apiRoutes.use('/months',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = "SELECT month as date from months where month > (select now()::timestamp - cast('" + queryData.months + " months' as interval)) AND month < now() order by month"
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
+/////////////////////////////////////////////////////////
 
 apiRoutes.use('/churchProvince',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
@@ -59,6 +77,25 @@ apiRoutes.use('/churchCity',function (req, res, next) {
 apiRoutes.use('/churchType',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
   var query = "SELECT COUNT(*) as count FROM Church where City = 'OTTAWA'"
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
+apiRoutes.use('/churchAttendance',function (req, res, next) { ///fake
+  var queryData = url.parse(req.url, true).query;
+  var query = "SELECT EXTRACT(year from date) || '-' || EXTRACT(month from date) as date, EXTRACT(year from date) as year, EXTRACT(month from date) as month, value \
+                FROM churchattendance \
+                WHERE date > (select now()::timestamp - cast('" + queryData.months + " months' as interval)) \
+                order by EXTRACT(year from date), EXTRACT(month from date)"
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
+apiRoutes.use('/religionBreakdown',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = 'SELECT religion, SUM(total) as value FROM "religionByArea" group by religion'
   querydb(query, config.church, function(cbvalues) {
     res.status(200).json(cbvalues);
   });
