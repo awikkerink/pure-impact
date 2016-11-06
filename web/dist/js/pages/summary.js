@@ -8,11 +8,12 @@
 $(function () {
   "use strict";
   var City = getParameterByName("City")
-  if (City == null){ City = geoplugin_city(); console.log(City)}
-
+  // if (City == null){ City = geoplugin_city(); console.log(City)}
+  if (City == null){ City = "WATERLOO" }
+  console.log(City)
   var Province = geoplugin_region()
   if (Province == null){ Province = geoplugin_city(); console.log(Province)}
-  
+
   $('#heading').text("Where Are The Churches in " + City + "?"); //Take most recent value
 
   var graphCount = 0;
@@ -36,13 +37,13 @@ $(function () {
 
   setTimeout(areGraphsDone , 250)
 
-  $.get('/api/churchProvince' + document.location.search, function (res) {
+  $.get('/api/churchProvince?Province=' + Province, function (res) {
     $('#numChurchProvince').text(numberWithCommas(res[0].count));
   });
-  $.get('/api/churchCity' + document.location.search, function (res) {
+  $.get('/api/churchCity?City=' + City, function (res) {
     $('#numChurchCity').text(numberWithCommas(res[0].count));
   });
-  $.get('/api/religionBreakdown', function (res) {
+  $.get('/api/religionBreakdown?City=' + City, function (res) {
     $('#largestFaith').text(res[0].religion + " - " + numberWithCommas(res[0].value));
     $('#smallestFaith').text(res[res.length-1].religion + " - " + numberWithCommas(res[res.length -1].value));
   });
