@@ -176,7 +176,7 @@
     display: inline-block;
     max-width: 500px;
     width: 25%;
-    margin: 10% 0;
+    margin: 5% 0 10% 0;
 }
 
 .domain-form-holder div[class^="col-"]{
@@ -367,21 +367,21 @@
 }
 #info .info-box .hroc{
     font-size: 90px;
-    color: white;
+    color: #64D0E4;
 }
 #info .info-box.opened-info .hroc,
 #info .info-box:hover .hroc,
 #info .info-box:focus .hroc{
-    color: #64D0E4;
+    color: white;
 }
 #info .info-box .fa{
     font-size: 90px;
-    color: white;
+    color: #64D0E4;
 }
 #info .info-box.opened-info .fa,
 #info .info-box:hover .fa,
 #info .info-box:focus .fa{
-    color: #64D0E4;
+    color: white;
 }
 #info .info-box img{
     width: 100%;
@@ -390,14 +390,14 @@
 #info .info-box .info-title{
     font-family: 'Montserrat-SemiBold', sans-serif;
     font-size: 15px;
-    color: white;
+    color: #64D0E4;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 #info .info-box.opened-info .info-title,
 #info .info-box:hover .info-title,
 #info .info-box:focus .info-title{
-    color: #64D0E4;
+    color: white;
 }
 #info .info-box .info-circle{
     position: relative;
@@ -407,7 +407,7 @@
     display: inline-block;
     width: 8px;
     height: 8px;
-    border: 2px solid #64D0E4;
+    border: 2px solid white;
     border-radius: 50px;
     top: 50%;
     left: 50%;
@@ -931,11 +931,11 @@
 #footer .row-title h5{
     font-size: 15px;
     color: #aec0c7;
-    margin-bottom: 40px;
+    /*margin-bottom: 40px;*/
 }
 
 #footer .main-footer-content{
-    padding-bottom: 40px;
+    padding: 3% 10%;
 }
 
 #footer p{
