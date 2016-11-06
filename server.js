@@ -172,6 +172,13 @@ apiRoutes.use('/religionDemographicBreakdown',function (req, res, next) {
 
 apiRoutes.get('/search', function(req, res) {
 	var searchTerm = req.query.text.toLowerCase();
+	var page = 0;
+	if( req.query.page ) {
+		page = req.query.page;
+	}
+
+	var resultsPerPage = 25;
+	var offset = page * resultsPerPage;
 
 	// warning SQL injection can happen here
 	// also this will totally blow up if special characters are accepted
@@ -179,10 +186,20 @@ apiRoutes.get('/search', function(req, res) {
 		'FROM Church ' +
 		"WHERE LOWER( legalname ) like '%" + searchTerm + "%' " +
 		"OR LOWER( city ) like '%" + searchTerm + "%' " +
-		"OR LOWER( province ) like '%" + searchTerm + "%' ";
+		"OR LOWER( province ) like '%" + searchTerm + "%' " +
+		'OFFSET ' + offset + ' ' + 
+		'LIMIT ' + resultsPerPage;
 
 	querydb( query, config.church, function( cbvalues ) {
-		res.status(200).json(cbvalues);
+		var moreResults = cbvalues.length === resultsPerPage; //This has a bug if there are exactly resultsPerPage results
+
+		var result = {
+			page: page,
+			data: cbvalues,
+			more: moreResults
+		};
+
+		res.status(200).json( result );
 	});
 
 });

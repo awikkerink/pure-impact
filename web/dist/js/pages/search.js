@@ -1,15 +1,24 @@
+var getSearchText = ( function() {
+	var urlQueryParams = document.location.search.split( '&' );
+
+	for( var i =0; i < urlQueryParams; i++ ) {
+		var queryParam = urlQueryParams[i];
+		if( queryParam.startsWith( 'text=' ) ) {
+			return queryParam.split( '=' )[1];
+		}
+	}
+} );
+
 $(function () {
   "use strict";
 
   $('#heading').text("Search");
-  $.get('/api/search' + document.location.search , function (res) {
+  $.get('/api/search' + document.location.search, function (res) {
 
     var table = document.getElementById("churchSearchResult");
     var tb = document.createElement('tbody');
 
-    for( var i = 0; i < res.length && i < 100; i++ ) {
-      var church = res[i];
-
+    res.data.forEach( function( church ) {
       var tr = tb.appendChild (document.createElement('tr'));
 
       var name = tr.appendChild( document.createElement('td') );
@@ -19,17 +28,33 @@ $(function () {
       name.innerHTML = church.name;
       city.innerHTML = church.city;
       province.innerHTML = church.province;
-    }
-    if( res.length >= 100 ) {
-      var tr = tb.appendChild (document.createElement('tr'));
-      var cell = tr.appendChild( document.createElement('td'));
-      tr.appendChild( document.createElement('td'));
-      tr.appendChild( document.createElement('td'));
-      cell.innerHTML = 'More results exist. Please narrow your search term if what you want to find something that has not been displayed';
-    }
+    } );
 
     table.appendChild(tb);
+
+    var searchTerm = '';
+    var urlQueryParams = document.location.search.split( '&' );
+	for( var i =0; i < urlQueryParams.length; i++ ) {
+		var queryParam = urlQueryParams[i];
+		if( queryParam.startsWith( 'text=' ) || queryParam.startsWith( '?text=' ) ) {
+			searchTerm =  queryParam.split( '=' )[1];
+			break;
+		}
+	}
+
+    var footerHtml = '';
+    var page = parseInt( res.page, 10 );
+    if( page > 0 ) {
+      footerHtml += '<a href="/search.html?page=' + ( page - 1 ) + '&text=' + searchTerm + '">prev</a>';
+    }
+    if( res.more === true ) {
+      footerHtml += '<a class="right" href="/search.html?page=' + ( page + 1 ) + '&text=' + searchTerm + '">next</a>';
+    }
+
+    document.getElementById( 'tableFooter' ).innerHTML = footerHtml;
 
   });
 
 });
+
+
