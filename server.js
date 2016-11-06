@@ -68,7 +68,8 @@ apiRoutes.use('/churchProvince',function (req, res, next) {
 
 apiRoutes.use('/churchCity',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
-  var query = "SELECT COUNT(*) as count FROM Church where City = 'OTTAWA'"
+  var City = queryData.City.toUpperCase()
+  var query = "SELECT COUNT(*) as count FROM Church where City = '" + City + "'"
   querydb(query, config.church, function(cbvalues) {
     res.status(200).json(cbvalues);
   });
@@ -76,7 +77,8 @@ apiRoutes.use('/churchCity',function (req, res, next) {
 
 apiRoutes.use('/churchType',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
-  var query = "SELECT COUNT(*) as count FROM Church where City = 'OTTAWA'"
+  var City = queryData.City.toUpperCase()
+  var query = "SELECT COUNT(*) as count FROM Church where City = '" + City + "'"
   querydb(query, config.church, function(cbvalues) {
     res.status(200).json(cbvalues);
   });
@@ -166,6 +168,23 @@ apiRoutes.use('/religionDemographicBreakdown',function (req, res, next) {
       res.status(200).json(cbvalues1.concat(cbvalues2));
     });
   });
+});
+
+apiRoutes.get('/search', function(req, res) {
+	var searchTerm = req.query.text.toLowerCase();
+
+	// warning SQL injection can happen here
+	// also this will totally blow up if special characters are accepted
+	var query = 'SELECT legalname as name, city, province ' +
+		'FROM Church ' +
+		"WHERE LOWER( legalname ) like '%" + searchTerm + "%' " +
+		"OR LOWER( city ) like '%" + searchTerm + "%' " +
+		"OR LOWER( province ) like '%" + searchTerm + "%' ";
+
+	querydb( query, config.church, function( cbvalues ) {
+		res.status(200).json(cbvalues);
+	});
+
 });
 
 app.use(express.static('./web'));

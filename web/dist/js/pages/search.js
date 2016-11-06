@@ -2,51 +2,34 @@ $(function () {
   "use strict";
 
   $('#heading').text("Search");
-  apiGetRequest('/api/search/text' + document.location.search , function (res) {
+  $.get('/api/search' + document.location.search , function (res) {
 
     var table = document.getElementById("churchSearchResult");
     var tb = document.createElement('tbody');
-    for (var i = 0; i < res.length; i++) {
+
+    for( var i = 0; i < res.length && i < 100; i++ ) {
+      var church = res[i];
+
       var tr = tb.appendChild (document.createElement('tr'));
-      //populate row data
-      var Instance = tr.appendChild( document.createElement('td') );
-      var Orgs = tr.appendChild( document.createElement('td') );
-      var DataCenter = tr.appendChild( document.createElement('td') );
-      var Client = tr.appendChild( document.createElement('td') );
 
-      tr.cells[0].innerHTML = '<a href="/pages/instance.html?instance=' + res[i]['Instance'] + '"><b>' + res[i]['Instance'] + '</b>'
+      var name = tr.appendChild( document.createElement('td') );
+      var city = tr.appendChild( document.createElement('td') );
+      var province = tr.appendChild( document.createElement('td') );
 
-      var OrgArray = res[i]['Orgs'].split(',');
-      for (var j = 0; j < OrgArray.length; j++) {
-        var mod = j % 6;
-        var colour = "blue";
-        if (mod == 0) colour = "blue";
-        else if (mod == 1) colour = "green";
-        else if (mod == 2) colour = "yellow";
-        else if (mod == 3) colour = "orange";
-        else if (mod == 4) colour = "red";
-        else if (mod == 5) colour = "purple";
-        tr.cells[1].innerHTML += '<span class="badge bg-' + colour + '"><a style="color:white" href="/pages/org.html?instance=' + res[i]['Instance'] +  '&org='+ OrgArray[j] + '">'+ OrgArray[j] + '</span>'
-      }
-
-      tr.cells[2].innerHTML = '<b>' + res[i]['Datacenter'] + '</b>'
-      //tr.cells[3].innerHTML = '<a href="/pages/client.html?client=' + res[i]['ClientName'] + '"><b>' + res[i]['ClientName'] + '</b>'
-      var ClientArray = res[i]['Clients'].split(',');
-      for (var j = 0; j < ClientArray.length; j++) {
-        var mod = j % 6;
-        var colour = "blue";
-        if (mod == 0) colour = "blue";
-        else if (mod == 1) colour = "green";
-        else if (mod == 2) colour = "yellow";
-        else if (mod == 3) colour = "orange";
-        else if (mod == 4) colour = "red";
-        else if (mod == 5) colour = "purple";
-        if (ClientArray[j] != ''){
-          tr.cells[3].innerHTML += '<span class="badge bg-' + colour + '"><a style="color:white" href="/pages/client.html?client=' + ClientArray[j] + '">'+ ClientArray[j] + '</span>'
-        }
-      }
-      table.appendChild(tb);
+      name.innerHTML = church.name;
+      city.innerHTML = church.city;
+      province.innerHTML = church.province;
     }
+    if( res.length >= 100 ) {
+      var tr = tb.appendChild (document.createElement('tr'));
+      var cell = tr.appendChild( document.createElement('td'));
+      tr.appendChild( document.createElement('td'));
+      tr.appendChild( document.createElement('td'));
+      cell.innerHTML = 'More results exist. Please narrow your search term if what you want to find something that has not been displayed';
+    }
+
+    table.appendChild(tb);
+
   });
 
 });
