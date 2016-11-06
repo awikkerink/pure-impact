@@ -129,6 +129,16 @@ apiRoutes.use('/studentsByUniversity',function (req, res, next) {
   });
 });
 
+apiRoutes.use('/studentsByCity',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = 'SELECT "Region", "City", "City" || \', \' || "Region" as location, SUM("Students") as value FROM p2cdata \
+                where "Students" > 0 \
+                GROUP by "Region", "City"'
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
 app.use(express.static('./web'));
 
 app.use('/api', apiRoutes);
