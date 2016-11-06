@@ -8,14 +8,14 @@
 $(function () {
   "use strict";
 
-  $('#heading').text("Where Are The Churches?"); //Take most recent value
+  $('#heading').text("Joyful Abundance Community Church"); //Take most recent value
 
   var graphCount = 0;
   var graphTotal = 1;
 
   PopulateGraphMonthly(36, 30, 0, false, 2, '/api/churchAttendance?months=36', '', 'churchAttendance', '', 0, 'line', '', 'CB15', function(cb){ graphCount++ })
 
-  PopulatePieGraph('/api/religionBreakdown', 'religionBreakdown', '', 0, 'religion', 'value', 'doughnut', 'CB15', '')
+  //PopulatePieGraph('/api/religionBreakdown', 'religionBreakdown', '', 0, 'religion', 'value', 'doughnut', 'CB15', '')
 
   var areGraphsDone = function(){
     if (graphCount == graphTotal){
@@ -31,13 +31,14 @@ $(function () {
   setTimeout(areGraphsDone , 250)
 
   $.get('/api/churchProvince' + document.location.search, function (res) {
-    $('#numChurchProvince').text(numberWithCommas(res[0].count));
+    $('#attendanceLastWeek').text(numberWithCommas(res[0].count));
   });
   $.get('/api/churchCity' + document.location.search, function (res) {
-    $('#numChurchCity').text(numberWithCommas(res[0].count));
+    $('#attendanceAverage').text(numberWithCommas(res[0].count));
   });
    $.get('/api/religionBreakdown' + document.location.search, function (res) {
-     $('#largestFaith').text(numberWithCommas(res[0].count));
-     $('#smallestFaith').text(numberWithCommas(res[res.length -1].count));
+     console.log(res)
+     $('#givingLastWeek').text(numberWithCommas(res[0].count));
+     $('#givingAverage').text(numberWithCommas(res[res.length -1].count));
    });
 });
