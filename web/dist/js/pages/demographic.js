@@ -19,7 +19,8 @@ $(function () {
 
   //PopulatePieGraph('/api/stats/logins/lastXDays/bydc?days=30', 'pieChart', '', 3, 1, 'LocationName', 'Percentage', 'doughnut', 'CB15', '%')
 
-  PopulatePieGraph('/api/religionDemographicBreakdown?sum=total', 'religionDemographicBreakdown', '', 0, 'denomination', 'value', 'pie', 'CB15', '')
+  PopulatePieGraph('/api/religionDenomationBreakdown', 'religionDenomationBreakdown', '', 0, 'denomination', 'value', 'pie', 'CB15', '')
+  PopulatePieGraph('/api/religionDemographicBreakdown', 'religionDemographicBreakdown', '', 0, 'gender', 'value', 'pie', 'CB15', '')
 
   var areGraphsDone = function(){
     if (graphCount == graphTotal){

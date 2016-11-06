@@ -129,11 +129,22 @@ apiRoutes.use('/studentsByUniversity',function (req, res, next) {
   });
 });
 
-apiRoutes.use('/religionDemographicBreakdown',function (req, res, next) {
+apiRoutes.use('/religionDenomationBreakdown',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
   var query = "SELECT denomination, SUM(total) as value FROM \"religionByArea\" WHERE religion = 'Christian' group by denomination"
   querydb(query, config.church, function(cbvalues) {
     res.status(200).json(cbvalues);
+  });
+});
+
+apiRoutes.use('/religionDemographicBreakdown',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query1 = "SELECT 'male' as gender, SUM(male) as value FROM \"religionByArea\" WHERE religion = 'Christian' group by religion"
+  var query2 = "SELECT 'female' as gender, SUM(female) as value FROM \"religionByArea\" WHERE religion = 'Christian' group by religion"
+  querydb(query1, config.church, function(cbvalues1) {
+    querydb(query2, config.church, function(cbvalues2) {
+      res.status(200).json(cbvalues1.concat(cbvalues2));
+    });
   });
 });
 
