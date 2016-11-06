@@ -15,7 +15,7 @@ function getParameterByName(name, url) { // This is for getting a queryString it
 }
 
 $(function() {
-  $("#header").html('<a href="/index.html" class="logo"> \
+  $("#header").html('<a href="/summary.html" class="logo"> \
       <span class="logo-mini"><b>Pure Impact</b></span> \
       <span class="logo-lg">Pure<b>Impact</b></span> \
     </a> \
@@ -36,30 +36,25 @@ $(function() {
       </div> \
     </form> \
     <ul class="sidebar-menu"> \
-      <li class="header">MAIN NAVIGATION</li> \
-      <li> \
-        <a href="/pages/attendance.html"> \
-          <i class="fa fa-bar-chart"></i> <span>Attendance</span> \
-        </a> \
-      </li> \
-      <li> \
-        <a href="/pages/giving.html"> \
-          <i class="fa fa-dollar"></i> <span>Giving</span> \
-        </a> \
-      </li> \
+      <li class="header">GLOBAL DATA</li> \
       <li> \
         <a href="/pages/demographic.html"> \
-          <i class="fa fa-user"></i> <span>Demographic</span> \
+          <i class="fa fa-user"></i> <span>Demographic Data</span> \
         </a> \
       </li> \
       <li> \
         <a href="/pages/events.html"> \
-          <i class="fa fa-asterisk"></i> <span>Events</span> \
+          <i class="fa fa-asterisk"></i> <span>Events In Your City</span> \
         </a> \
       </li> \
       <li> \
         <a href="/pages/needs.html"> \
-          <i class="fa fa-hand-paper-o"></i> <span>Needs</span> \
+          <i class="fa fa-hand-paper-o"></i> <span>Needs In Your City</span> \
+        </a> \
+      </li> \
+      <li> \
+        <a href="/pages/churchCollab.html"> \
+          <i class="fa fa-compress"></i> <span>Church Collab</span> \
         </a> \
       </li>';
 

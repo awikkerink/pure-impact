@@ -7,8 +7,13 @@
 
 $(function () {
   "use strict";
+  var City = getParameterByName("City")
+  if (City == null){ City = geoplugin_city(); console.log(City)}
 
-  $('#heading').text("Where Are The Churches in Kitchener?"); //Take most recent value
+  var Province = geoplugin_region()
+  if (Province == null){ Province = geoplugin_city(); console.log(Province)}
+  
+  $('#heading').text("Where Are The Churches in " + City + "?"); //Take most recent value
 
   var graphCount = 0;
   var graphTotal = 1;
