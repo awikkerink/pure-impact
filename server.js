@@ -40,6 +40,24 @@ apiRoutes.use('/church',function (req, res, next) {
   });
 });
 
+apiRoutes.use('/dates',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = "SELECT * from dates where date > (select now()::timestamp - cast('" + queryData.days + " days' as interval)) AND days < now() order by date"
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
+apiRoutes.use('/months',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = "SELECT month as date from months where month > (select now()::timestamp - cast('" + queryData.months + " months' as interval)) AND month < now() order by month"
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
+/////////////////////////////////////////////////////////
+
 apiRoutes.use('/churchProvince',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
   var query = "SELECT COUNT(*) as count FROM Church where Province = 'ON'"
@@ -64,7 +82,7 @@ apiRoutes.use('/churchType',function (req, res, next) {
   });
 });
 
-apiRoutes.use('/churchAttendance',function (req, res, next) {
+apiRoutes.use('/churchAttendance',function (req, res, next) { ///fake
   var queryData = url.parse(req.url, true).query;
   var query = "SELECT EXTRACT(year from date) || '-' || EXTRACT(month from date) as date, EXTRACT(year from date) as year, EXTRACT(month from date) as month, value \
                 FROM churchattendance \
@@ -75,17 +93,9 @@ apiRoutes.use('/churchAttendance',function (req, res, next) {
   });
 });
 
-apiRoutes.use('/dates',function (req, res, next) {
+apiRoutes.use('/religionBreakdown',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
-  var query = "SELECT * from dates where date > (select now()::timestamp - cast('" + queryData.days + " days' as interval)) order by date"
-  querydb(query, config.church, function(cbvalues) {
-    res.status(200).json(cbvalues);
-  });
-});
-
-apiRoutes.use('/months',function (req, res, next) {
-  var queryData = url.parse(req.url, true).query;
-  var query = "SELECT * from months where date > (select now()::timestamp - cast('" + queryData.months + " months' as interval)) order by date"
+  var query = 'SELECT religion, SUM(total) as value FROM "religionByArea" group by religion'
   querydb(query, config.church, function(cbvalues) {
     res.status(200).json(cbvalues);
   });

@@ -146,7 +146,7 @@ var DailyGetGraphData = function(days, todayLessXDays, apiRoute, split, toFixed,
           i--
           continue;
         } else {
-          if (res[i].Value == null){
+          if (res[i].value == null){
             DataSet[DateIndex] = 0
           }
           else {
@@ -165,11 +165,11 @@ var DailyGetGraphData = function(days, todayLessXDays, apiRoute, split, toFixed,
             DataSet[DateIndex] = 0
           }
           else {
-            if (res[i].Value == null){
+            if (res[i].value == null){
               DataSet[DateIndex] = 0
             }
             else {
-              DataSet[DateIndex] = parseFloat(res[i].Value).toFixed(toFixed)
+              DataSet[DateIndex] = parseFloat(res[i].value).toFixed(toFixed)
             }
           }
           if (type == 'bar'){
