@@ -36,9 +36,9 @@ $(function () {
   $.get('/api/churchCity' + document.location.search, function (res) {
     $('#numChurchCity').text(numberWithCommas(res[0].count));
   });
-   $.get('/api/religionBreakdown' + document.location.search, function (res) {
-     console.log(res)
-     $('#largestFaith').text(res[0].religion + " - " + numberWithCommas(res[0].value));
-     $('#smallestFaith').text(res[res.length-1].religion + " - " + numberWithCommas(res[res.length -1].value));
-   });
+  $.get('/api/religionBreakdown', function (res) {
+    console.log(res)
+    $('#largestFaith').text(res[0].religion + " - " + numberWithCommas(res[0].value));
+    $('#smallestFaith').text(res[res.length-1].religion + " - " + numberWithCommas(res[res.length -1].value));
+  });
 });

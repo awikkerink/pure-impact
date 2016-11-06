@@ -93,6 +93,16 @@ apiRoutes.use('/churchAttendance',function (req, res, next) { ///fake
   });
 });
 
+apiRoutes.use('/churchAttendanceAverage',function (req, res, next) { ///fake
+  var queryData = url.parse(req.url, true).query;
+  var query = "SELECT AVG(value) as value \
+                FROM churchattendance \
+                WHERE date > (select now()::timestamp - cast('" + queryData.months + " months' as interval))"
+  querydb(query, config.church, function(cbvalues) {
+    res.status(200).json(cbvalues);
+  });
+});
+
 apiRoutes.use('/religionBreakdown',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
   var query = 'SELECT religion, SUM(total) as value FROM "religionByArea" group by religion'

@@ -47,7 +47,7 @@ var GetPieGraphData = function(apiRoute, toFixed, split, value, type, palette, c
 
     for (var i = 0; i < res.length; i++) {
       Labels.push(res[i][split]);
-      Data.push((+res[i][value]).toFixed(toFixed));
+      Data.push(parseFloat(res[i][value]).toFixed(toFixed));
       if (Data.length == res.length){
         cbvalues(Data, Labels)
       }
@@ -140,26 +140,5 @@ var PopulatePieGraph = function(apiRoute, chartId, legendId, toFixed, split, val
     };
 
     window[legendId] = new Chart(PieChartCanvas, PieChartData);
-
-    // if (cbData.length > 1){
-    //   document.getElementById(legendId).innerHTML = window[legendId].generateLegend();
-    //   //window[legendId].store = new Array();
-    // }
-    // else {
-    //   window[legendId].generateLegend();
-    // }
-
-/*
-    if (last){
-      PiedefineLegendClickAction()
-    }
-    */
  });
 }
-/*
-var PiedefineLegendClickAction = function () {
- $(".piechart-legend-item").click(function(){
-   PieupdateDataset($(this))
- });
-}
-*/

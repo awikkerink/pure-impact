@@ -31,14 +31,15 @@ $(function () {
   setTimeout(areGraphsDone , 250)
 
   $.get('/api/churchAttendance?months=36' + document.location.search, function (res) {
-    $('#attendanceLastWeek').text(numberWithCommas(res[0].count));
+    $('#attendanceLastWeek').text(numberWithCommas(res[res.length - 1].value));
   });
-  $.get('/api/churchCity' + document.location.search, function (res) {
-    $('#attendanceAverage').text(numberWithCommas(res[0].count));
+
+  $.get('/api/churchAttendanceAverage?months=36' + document.location.search, function (res) {
+    $('#attendanceAverage').text(parseFloat(numberWithCommas(res[0].value), 0));
   });
-   $.get('/api/religionBreakdown' + document.location.search, function (res) {
-     console.log(res)
-     $('#givingLastWeek').text(numberWithCommas(res[0].count));
-     $('#givingAverage').text(numberWithCommas(res[res.length -1].count));
-   });
+
+  $.get('/api/religionBreakdown', function (res) {
+    $('#givingLastWeek').text("$" + numberWithCommas(res[0].value) + ".45");
+    $('#givingAverage').text("$" + numberWithCommas(res[res.length -2].value) + ".22");
+  });
 });
