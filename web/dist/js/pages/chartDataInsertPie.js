@@ -41,7 +41,7 @@ function PieshowAll(legendName){
 }*/
 
 var GetPieGraphData = function(apiRoute, toFixed, split, value, type, palette, cbvalues) {
-  apiGetRequest(apiRoute, function (res) {
+  $.get(apiRoute, function (res) {
     var Data = new Array;
     var Labels = new Array;
 
