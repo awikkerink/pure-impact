@@ -46,59 +46,26 @@
 
       <!-- Main content -->
       <section class="content">
-        <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-xs-3">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner" >
-                <p><b># Of Churches in your Province</b></p>
-                <h3 id="numChurchProvince">_</h3>
+          <div class="col-lg-12 col-xs-12">
+            <div class="box box-success">
+              <div class="box-header with-border">
+                <h3 class="box-title">Christian Denominations</h3>
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
               </div>
-              <div class="icon">
-                <i class="ion ion-briefcase"></i>
+              <div class="box-body">
+                <div class="chart">
+                  <canvas id="religionDenomationBreakdown" height="75"></canvas>
+                  <!-- <div id="COLOvsAWSLegend" class="chart-legend text-center"></div>
+                  <div align="center"><i class="chart-legend-left" onclick=hideAll("COLOvsAWSLegend")>HIDE ALL</i>
+                    <i class="chart-legend-right" onclick=showAll("COLOvsAWSLegend")>SHOW ALL</i>
+                  </div> -->
+                </div>
               </div>
-              <a href="/search.html" class="small-box-footer">Find a church in your province<i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-xs-3">
-            <!-- small box -->
-            <div class="small-box bg-green">
-              <div class="inner">
-                <p><b># Of Churches in your City</b></p>
-                <h3 id="numChurchCity">_</h3>
-              </div>
-              <div class="icon">
-                <i class="ion ion-cube"></i>
-              </div>
-              <a href="/search.html" class="small-box-footer">Find a church in your city<i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-xs-3">
-            <!-- small box -->
-            <div class="small-box bg-orange">
-              <div class="inner">
-                <p><b>Most Common Church Type</b></p>
-                <h3 id="numChurchLeast">_</h3>
-              </div>
-              <div class="icon">
-                <i class="ion ion-cube"></i>
-              </div>
-              <a href="/rawData.html" class="small-box-footer">See More Data<i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-xs-3">
-            <!-- small box -->
-            <div class="small-box bg-blue">
-              <div class="inner">
-                <p><b>Least Common Church Type</b></p>
-                <h3 id="numChurchMost">_</h3>
-              </div>
-              <div class="icon">
-                <i class="ion ion-cube"></i>
-              </div>
-              <a href="/rawData.html" class="small-box-footer">See More Data<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -106,21 +73,26 @@
           <div class="col-lg-12 col-xs-12">
             <div class="box box-success">
               <div class="box-header with-border">
-                <h3 class="box-title">Churches in Your Area</h3>
+                <h3 class="box-title">Christian Demographics</h3>
                 <div class="box-tools pull-right">
                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                   </button>
                   <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                 </div>
               </div>
-              <div class="pad">
-                <div id="world-map-markers" style="height: 418px;"></div>
+              <div class="box-body">
+                <div class="chart">
+                  <canvas id="religionDemographicBreakdown" height="75"></canvas>
+                  <!-- <div id="COLOvsAWSLegend" class="chart-legend text-center"></div>
+                  <div align="center"><i class="chart-legend-left" onclick=hideAll("COLOvsAWSLegend")>HIDE ALL</i>
+                    <i class="chart-legend-right" onclick=showAll("COLOvsAWSLegend")>SHOW ALL</i>
+                  </div> -->
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
     </div>
   </div>
   <footer class="main-footer" id ="footer">

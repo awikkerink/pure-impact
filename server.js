@@ -129,16 +129,36 @@ apiRoutes.use('/studentsByUniversity',function (req, res, next) {
   });
 });
 
+<<<<<<< HEAD
 apiRoutes.use('/studentsByCity',function (req, res, next) {
   var queryData = url.parse(req.url, true).query;
   var query = 'SELECT "Region" as region, "City", "City" || \', \' || "Region" as location, SUM("Students") as value FROM p2cdata \
                 where "Students" > 0 \
                 GROUP by "Region", "City"'
+=======
+apiRoutes.use('/religionDenomationBreakdown',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query = "SELECT denomination, SUM(total) as value FROM \"religionByArea\" WHERE religion = 'Christian' group by denomination"
+>>>>>>> 10309335134cd822d1b5e7a65f4d932cfc01f686
   querydb(query, config.church, function(cbvalues) {
     res.status(200).json(cbvalues);
   });
 });
 
+<<<<<<< HEAD
+=======
+apiRoutes.use('/religionDemographicBreakdown',function (req, res, next) {
+  var queryData = url.parse(req.url, true).query;
+  var query1 = "SELECT 'male' as gender, SUM(male) as value FROM \"religionByArea\" WHERE religion = 'Christian' group by religion"
+  var query2 = "SELECT 'female' as gender, SUM(female) as value FROM \"religionByArea\" WHERE religion = 'Christian' group by religion"
+  querydb(query1, config.church, function(cbvalues1) {
+    querydb(query2, config.church, function(cbvalues2) {
+      res.status(200).json(cbvalues1.concat(cbvalues2));
+    });
+  });
+});
+
+>>>>>>> 10309335134cd822d1b5e7a65f4d932cfc01f686
 app.use(express.static('./web'));
 
 app.use('/api', apiRoutes);

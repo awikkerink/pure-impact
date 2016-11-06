@@ -30,7 +30,7 @@ $(function () {
 
   setTimeout(areGraphsDone , 250)
 
-  $.get('/api/churchProvince' + document.location.search, function (res) {
+  $.get('/api/churchAttendance?months=36' + document.location.search, function (res) {
     $('#attendanceLastWeek').text(numberWithCommas(res[0].count));
   });
   $.get('/api/churchCity' + document.location.search, function (res) {
